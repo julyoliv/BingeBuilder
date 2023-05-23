@@ -1,0 +1,21 @@
+{% extends "bases/base_event.html" %}
+{% load static %}
+
+
+{% block 'conteudo' %}
+
+<div class="container">
+    <br>
+    <br>
+    <div class="row">
+        {% for certificate in certificates %}
+            <div class="col-md-4">
+                <img src="{{certificate.certificate.url}}" width="100%">
+
+                
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

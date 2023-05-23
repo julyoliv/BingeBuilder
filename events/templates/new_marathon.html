@@ -1,0 +1,57 @@
+{% extends "bases/base_event.html" %}
+
+
+{% block 'conteudo' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <br>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                <br>
+                <h3>New Marathon</h3>
+                <form action="{% url 'new_marathon' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <label>Marathon name</label>
+                    <input type="text" name="name" class="form-control" placeholder="marathon name...">
+                    <br>
+                    <label>Description</label>
+                    <textarea name="description" class="form-control" placeholder="description..."></textarea>
+                    <br>
+                    <div class="row">
+                        <div class="col-md">
+                            <label>Start date</label>
+                            <input type="date" name="start_date" class="form-control">
+                        </div>
+                        <div class="col-md">
+                            <label>Finish date</label>
+                            <input type="date" name="finish_date" class="form-control">
+                        </div>
+                    </div>
+                    <label>Marathon image</label>
+                    <input type="file" name="logo" class="form-control">
+                
+            </div>
+
+            <div style="z-index: 99999" class="col-md">
+                <br>
+                <br>
+                <h3>Color palette</h3>
+                <br>
+                <input type="color" name="main_color" value="#15773b"> <span>Main color</span>
+                <br>
+                <input type="color" name="secondary_color" value="#14e9e9"> <span>Secondary color</span>
+                <br>
+                <input type="color" name="bg_color" value="#020202"> <span>Background color</span>
+                <br>
+                <br>
+                <input type="submit" class="btn-principal" value="Create Marathon">
+                </form>
+            </div>
+            <form>
+        </div>
+    </div>
+
+{% endblock %}

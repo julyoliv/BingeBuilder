@@ -1,0 +1,42 @@
+{% extends 'bases/base_event.html' %}
+
+{% block 'conteudo' %}
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+
+                <br>
+            
+                <img width="100%" src="{{event.logo.url}}">
+                <br>
+                <br>
+                <h3>{{event.name}}</h3>
+            </div>
+            <hr>
+
+            <div class="col-md-6">
+                <h5>{{event.description}}</h5>
+                <br>
+                <p>{{event.start_date}} a {{event.finish_date}}</p>
+
+            {% if request.user in event.users.all %}
+                <input style="border-color: green;" type="submit" class="btn-principal" value="YOU ARE ALREADY REGISTRED" disabled>
+            {% else%}
+                <form action="{% url 'register_marathon' event.id %}" method="POST">{% csrf_token %}
+                    <input type="submit" class="btn-principal" value="I WANT TO JOIN">
+                </form>
+            {% endif %}
+            
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

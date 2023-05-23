@@ -1,0 +1,28 @@
+{% extends 'bases/base.html' %}
+{% load static %}
+{% block 'head' %}
+    <link href="{% static 'users/css/users.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'body' %}
+
+    <div class="container-fluid bg-inscricao">
+        
+        <div class="row">
+            <div class="col-md">
+                <h3 class="logo">BingeBuilder</h3>
+
+               {% include "partials/users/login.html" %}
+
+                <img src="{% static 'general/img/logo_event.png' %}" class="logo-event">
+
+            </div>
+
+            <div class="col-md bg-img">
+            
+            </div>
+        
+        </div>
+    </div>
+
+{% endblock %}

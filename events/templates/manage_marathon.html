@@ -1,0 +1,50 @@
+{% extends "bases/base_event.html" %}
+{% load static %}
+
+{% block 'importacoes' %}
+    <link href="{% static 'event/css/manage_marathon.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block 'conteudo' %}
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md">
+                <form action="{% url 'manage_marathon' %}" method="GET">
+                <label>Title:</label>
+                <input type="text" placeholder="title..." class="form-control" name="name">
+            </div>
+
+            <div class="col-md">
+                <br>
+                <input type="submit" class="btn-principal" value="filtrar">
+                </form>
+            </div>
+
+        </div>
+        <table>
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Start</th>
+                <th>Finish</th>
+                <th>Registration Link</th>
+            </tr>
+            
+            {% for event in events %}
+                <tr class="{% cycle 'linha' 'linha2' %}">
+                    <td width="10%"><a href="{% url 'users_event'  event.id %}"><img width="100%" src="/media/{{event.logo}}"></a></td>
+                    <td>{{event.name}}</td>
+                    <td>{{event.description}}</td>
+                    <td>{{event.start_date}}</td>
+                    <td>{{event.finish_date}}</td>
+                    <td>127.0.0.1:8000/events/register_marathon/{{event.id}}/</td>
+                </tr>
+            {% endfor %}    
+                    
+        </table>
+
+    </div>
+
+{% endblock %}
